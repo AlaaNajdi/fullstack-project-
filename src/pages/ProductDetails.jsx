@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductById } from '../services/productService';
 
-const ProductDetails = () => {      const [products, setProducts] = useState([]);
+const ProductDetails = () => {
+  const { id } = useParams(); 
+  const [product, setProduct] = useState(null);
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/products');
-      const data = await response.json();
-      console.log("data ", data.product.items)
-      setProducts(data.product.items);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+    const fetchProduct = async () => {
+      const response = await getProductById(id);
+      setProduct(response.data);
     };
-      fetchProducts();
-  }, []);
+    fetchProduct();
+  }, [id]);
+
+  if (!product) return <p>Loading...</p>;
+
+
   return (
     <div>
-<h2>Available products :shopping_trolley:</h2>
+      <h2>Available products :</h2>
       <ul>
-        {products.map((product) => (
           <li key={product.id}>
-            <img src={product.ImageUrl} alt="pro1 " />
+          <img src={product.imageUrl} alt={product.name} />
             <h3>{product.name}</h3>
             <p>Prics: {product.price} SAR</p>
-            <p>{product.categoryName}</p>
+            <p>Category:{product.categoryName}</p>
           </li>
-        ))}
       </ul>
-  </div>
+    </div>
   )
 }
 

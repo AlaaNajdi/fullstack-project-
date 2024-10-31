@@ -23,10 +23,8 @@ const Router = () => {
           path: "/about",
           element: <AboutPage />,
         },
-        {
-          path: "/productdetails",
-          element: <ProductDetails />,
-        },
+        { path: "/productdetails/:id", 
+          element: <ProductDetails /> },
       ]
     },
   ]);
