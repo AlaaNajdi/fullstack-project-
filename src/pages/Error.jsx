@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouteError, useNavigate } from "react-router-dom";
 
-const ErorrPage = () => {
+const ErrorPage = () => {
   const error = useRouteError();
 
   const navigate = useNavigate();
@@ -19,4 +19,4 @@ const ErorrPage = () => {
   )
 }
 
-export default ErorrPage
+export default ErrorPage

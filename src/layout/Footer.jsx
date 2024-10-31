@@ -5,7 +5,7 @@ export const Footer = () => {
     <div>
       <footer >
         <div >
-          <p>© 2024 Your Company. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Your Company. All rights reserved.</p>
           <p>Follow us on social media:</p>
           <div className="social-icons">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
