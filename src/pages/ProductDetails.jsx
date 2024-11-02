@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/productService';
 
 const ProductDetails = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -21,12 +21,12 @@ const ProductDetails = () => {
     <div>
       <h2>Available products :</h2>
       <ul>
-          <li key={product.id}>
+        <li key={product.id}>
           <img src={product.imageUrl} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>Prics: {product.price} SAR</p>
+          <h3>{product.name}</h3>
+          <p>Prics: {product.price} SAR</p>
           <p>Category:{product.categoryName}</p>
-          </li>
+        </li>
       </ul>
     </div>
   )

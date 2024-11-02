@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import Product from './Product';
 import { ProductContext } from '../../context/Productcontext';
 import SearchBar from '../searchbar/SearchBar';
-import Sort from '../sort/Sort';
 
 
 
 export const ProductList = () => {
-  const { products } = useContext(ProductContext)
+  const { products, setSortBy, setSortOrder, sortBy, sortOrder } = useContext(ProductContext)
   
+
 
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -20,28 +20,51 @@ export const ProductList = () => {
     const results = products.filter(product =>
       product.name && product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredProducts(results); 
+    setFilteredProducts(results);
   };
 
 
   useEffect(() => {
-    setFilteredProducts(products); 
+    setFilteredProducts(products);
   }, [products]);
+
+  const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  const handleSortOrderChange = (event) => {
+    setSortOrder(event.target.value);
+  };
 
   return (
     <div>
       <h2>Available products :</h2>
       <SearchBar onSearch={handleSearch} />
-      <br/>
-      <Sort/>
-      <br/>
+      <br />
+      <label>
+        Sort By:
+        <select onChange={handleSortByChange} value={sortBy}>
+          <option value="" disabled>Select an option</option>
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+        </select>
+      </label>
+      <label>
+        Sort Order:
+        <select onChange={handleSortOrderChange} value={sortOrder}>
+          <option value="" disabled>Select an Order</option>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </label>
+      <br />
       <ul>
         {
           Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <Product product={product} key={product.id} />
             ))) : (
-            <li>No products available</li> 
+            <li>No products available</li>
           )}
       </ul>
     </div>

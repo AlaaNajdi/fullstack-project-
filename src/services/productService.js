@@ -1,6 +1,6 @@
-export const getAllProducts = async (searchTerm, currentPage, pageSize) => {
+export const getAllProducts = async (searchTerm, currentPage, pageSize, sortBy = "name", sortOrder = "asc") => {
   try {
-    const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/products?Search=${searchTerm}&pageNumber=${currentPage}&pageSize=${pageSize}`);
+    const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/products?Search=${searchTerm}&pageNumber=${currentPage}&pageSize=${pageSize}&SortBy=${sortBy}&SortOrder=${sortOrder}`);
     const data = await response.json();
     return data;
   } catch (error) {

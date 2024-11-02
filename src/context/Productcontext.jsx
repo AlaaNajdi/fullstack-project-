@@ -11,6 +11,8 @@ export const ProductProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize] = useState(10);
+  const [sortBy, setSortBy] = useState("name"); 
+  const [sortOrder, setSortOrder] = useState("asc");
 
 
 
@@ -18,7 +20,7 @@ export const ProductProvider = ({ children }) => {
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
-        const response = await getAllProducts(searchTerm, currentPage, pageSize);
+        const response = await getAllProducts(searchTerm, currentPage, pageSize, sortBy, sortOrder);
         setProducts(response.product.items);
         setTotalPages(Math.ceil(response.product.totalCount / pageSize));
       } catch (error) {
@@ -30,12 +32,13 @@ export const ProductProvider = ({ children }) => {
     };
     fetchProducts();
 
-  }, []);
+  }, [currentPage, pageSize, sortBy, sortOrder]);
 
 
   return (
     <ProductContext.Provider value={{
-      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize,}}>
+      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize, sortBy, setSortBy, sortOrder, setSortOrder,
+    }}>
       {children}
     </ProductContext.Provider>
   );

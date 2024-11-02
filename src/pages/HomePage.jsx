@@ -5,7 +5,7 @@ import { ProductContext } from '../context/Productcontext';
 
 export const HomePage = () => {
 
- const {isLoading,error} = useContext(ProductContext);
+  const { isLoading, error } = useContext(ProductContext);
   if (isLoading) {
     return <p>products are loading...</p>
   }

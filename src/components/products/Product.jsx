@@ -5,7 +5,8 @@ const Product = ({ product }) => {
   const navigate = useNavigate();
 
   const handleDetailsClick = () => {
-    navigate(`/productdetails/${product.id}`);}
+    navigate(`/productdetails/${product.id}`);
+  }
 
   return (
     <div>
@@ -20,4 +21,3 @@ const Product = ({ product }) => {
 }
 
 export default Product
-
