@@ -10,9 +10,10 @@ export const ProductProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(2);
   const [sortBy, setSortBy] = useState("name"); 
   const [sortOrder, setSortOrder] = useState("asc");
+
 
 
 
@@ -23,6 +24,10 @@ export const ProductProvider = ({ children }) => {
         const response = await getAllProducts(searchTerm, currentPage, pageSize, sortBy, sortOrder);
         setProducts(response.product.items);
         setTotalPages(Math.ceil(response.product.totalCount / pageSize));
+
+        if (currentPage > Math.ceil(response.product.totalCount / pageSize)) {
+          setCurrentPage(Math.ceil(response.product.totalCount / pageSize));}
+
       } catch (error) {
         setError(error)
         console.error('Error fetching products:', error);

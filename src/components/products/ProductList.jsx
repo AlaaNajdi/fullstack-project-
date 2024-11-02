@@ -3,11 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import Product from './Product';
 import { ProductContext } from '../../context/Productcontext';
 import SearchBar from '../searchbar/SearchBar';
+import Pagination from '../pagination/Pagination';
 
 
 
 export const ProductList = () => {
-  const { products, setSortBy, setSortOrder, sortBy, sortOrder } = useContext(ProductContext)
+  const { products, setSortBy, setSortOrder, sortBy, sortOrder, currentPage, setCurrentPage,totalPages } = useContext(ProductContext)
   
 
 
@@ -67,6 +68,11 @@ export const ProductList = () => {
             <li>No products available</li>
           )}
       </ul>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </div>
   )
 }
