@@ -4,6 +4,7 @@ import Product from './Product';
 import { ProductContext } from '../../context/Productcontext';
 import SearchBar from '../searchbar/SearchBar';
 import Pagination from '../pagination/Pagination';
+import Sort from '../sort/Sort';
 
 
 
@@ -42,23 +43,10 @@ export const ProductList = () => {
       <h2>Available products :</h2>
       <SearchBar onSearch={handleSearch} />
       <br />
-      <label>
-        Sort By:
-        <select onChange={handleSortByChange} value={sortBy}>
-          <option value="" disabled>Select an option</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-        </select>
-      </label>
-      <label>
-        Sort Order:
-        <select onChange={handleSortOrderChange} value={sortOrder}>
-          <option value="" disabled>Select an Order</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </label>
-      <br />
+      <Sort
+        onSortByChange={handleSortByChange}
+        onSortOrderChange={handleSortOrderChange}
+      />
       <ul>
         {
           Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
