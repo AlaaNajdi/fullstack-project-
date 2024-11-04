@@ -44,13 +44,13 @@ const Router = () => {
         },
         {//if you siginin you can go to any children
           path: "/dashboard/users",
-          element: <ProtectedUserRoute />,
+          element: <ProtectedUserRoute ><ProtectedUserRoute/></ProtectedUserRoute>,
           errorElement: <ErrorPage />,
           children: []
         },
         {//if you siginin you can go to any children
           path: "/dashboard/admins",
-          element: <ProtectedAdminRout />,
+          element: <ProtectedAdminRout ><ProtectedAdminRout/></ProtectedAdminRout>,
           errorElement: <ErrorPage />,
           children: []
         },
