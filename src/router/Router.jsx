@@ -6,6 +6,9 @@ import ErrorPage from '../pages/Error';
 import HomePage from '../pages/HomePage';
 import AboutPage from '../pages/AboutPage';
 import ProductDetails from '../pages/ProductDetails';
+import SignUpPage from '../pages/SignUpPage';
+import SignInPage from '../pages/SignInPage';
+import SignOutPage from '../pages/SignOutPage';
 
 const Router = () => {
 
@@ -25,6 +28,18 @@ const Router = () => {
         },
         { path: "/productdetails/:id", 
           element: <ProductDetails /> },
+        {
+          path: "/signup",
+          element: <SignUpPage />
+        },
+        {
+          path: "/signin",
+          element: <SignInPage />
+        },
+        {
+          path: "/signout",
+          element: <SignOutPage />
+        },
       ]
     },
   ]);
