@@ -9,6 +9,8 @@ import ProductDetails from '../pages/ProductDetails';
 import SignUpPage from '../pages/SignUpPage';
 import SignInPage from '../pages/SignInPage';
 import SignOutPage from '../pages/SignOutPage';
+import ProtectedUserRoute from './ProtectedUserRoute';
+import ProtectedAdminRout from './ProtectedAdminRout';
 
 const Router = () => {
 
@@ -39,6 +41,18 @@ const Router = () => {
         {
           path: "/signout",
           element: <SignOutPage />
+        },
+        {//if you siginin you can go to any children
+          path: "/dashboard/users",
+          element: <ProtectedUserRoute />,
+          errorElement: <ErrorPage />,
+          children: []
+        },
+        {//if you siginin you can go to any children
+          path: "/dashboard/admins",
+          element: <ProtectedAdminRout />,
+          errorElement: <ErrorPage />,
+          children: []
         },
       ]
     },
