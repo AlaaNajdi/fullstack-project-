@@ -1,15 +1,20 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import SignInPage from '../pages/SignInPage'
+import React, { useContext } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
+import { UserContext } from '../context/Usercontext';
 
-export const ProtectedAdminRout = () => {
-  const logininfo = JSON.parse(localStorage.getItem("signin"))
 
-  return (
-    <div>
-      {logininfo !== null && logininfo.IsSignin && logininfo.userdata.isAdmin ? <Outlet /> : <SignInPage />}
-    </div>
-  )
+export const ProtectedAdminRoute = () => {
+
+  const { userLoggedIn, isAdmin } = useContext(UserContext);
+
+  return userLoggedIn && isAdmin ? <Outlet /> : <Navigate to="/signin" />;
 }
 
-export default ProtectedAdminRout
+export default ProtectedAdminRoute
+
+
+// when user logged in successfully, backend returns back jwt token =>done
+// jwt-decode (npm install) to decode the token =>done
+// return object of a user, inside this object, there will be role 
+// remember to store decoded user object in localStorage=>done
+// and store user loggedin in the userContext  : const [userLoggedIn, setUserLoggedIn] = useState(null)

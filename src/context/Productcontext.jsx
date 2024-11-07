@@ -16,7 +16,6 @@ export const ProductProvider = ({ children }) => {
 
 
 
-
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);

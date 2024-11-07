@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signOutUser } from '../services/userService';
+import { UserContext } from '../context/Usercontext';
 
 const SignOutPage = () => {
   const navigate = useNavigate();
+  const { signOutUser }=useContext(UserContext);
 
   const handleSignOut = () => {
     signOutUser(); 

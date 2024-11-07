@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
+import { UserContext } from '../context/Usercontext';
 
-export const ProtectedUserRoute = () => {
-  const token = localStorage.getItem('token');
-
-  return token ? <Outlet /> : <Navigate to="/signin" />;
+const ProtectedUserRoute = () => {
+  const { userLoggedIn } = useContext(UserContext);
+  return userLoggedIn ? <Outlet /> : <Navigate to="/signin" />;
 }
 
 export default ProtectedUserRoute

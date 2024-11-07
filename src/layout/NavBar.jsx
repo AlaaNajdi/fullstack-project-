@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/Usercontext';
 
 const NavBar = () => {
-  const isAuthenticated = !!localStorage.getItem('token');
+  const { userLoggedIn } = useContext(UserContext);
+  console.log("navbar: ", userLoggedIn);
   return (
     <Navbar expand="lg" bg="light" variant="light">
       <Container>
@@ -12,12 +14,12 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link  to="/" >Home</Link>
-            {!isAuthenticated && (
+            {!userLoggedIn && (
               <>
             <Link to="/signup">signup</Link>
             <Link to="/signin">signin</Link>
             </>)}
-            {isAuthenticated && (
+            {userLoggedIn && (
               <>
             <Link to="/signout">signout</Link>
             </>)}

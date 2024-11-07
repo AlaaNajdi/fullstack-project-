@@ -1,19 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReusableForm from '../components/reusableform/ReusableForm';
 import { useNavigate } from 'react-router-dom';
 import { signInUser } from '../services/userService';
+import { UserContext } from '../context/Usercontext';
 
 const SignInPage = () => {
   const navigate = useNavigate();
+  const { setUserLoggedIn, setToken, setIsAdmin, setUserId, setUserName, setUserLoggedInData } = useContext(UserContext);
 
   const handleSignIn = async (formData) => {
     try {
+      console.log("form data ", formData)
       const response = await signInUser(formData);
-      if (response.ok) {
-        navigate('/');
-      } else {
-        console.error('Failed to register user');
+
+      console.log("response sign in form", response)
+      setUserLoggedIn(true);
+      setToken(response.token);
+      setIsAdmin(response.isAdmin);
+      setUserId(response.userId)
+      setUserName(response.userName)
+      const userLoggedIn = {
+        isAdmin: response.isAdmin,
+        userId: response.userId,
+        userName: response.userName
       }
+      setUserLoggedInData(userLoggedIn)
+      localStorage.setItem("userLoggedIn", JSON.stringify(userLoggedIn))
+      localStorage.setItem("token", response.token)
+      localStorage.setItem("isAdmin", response.isAdmin)
+      navigate('/');
+
     } catch (error) {
       console.error('Error:', error);
     }
