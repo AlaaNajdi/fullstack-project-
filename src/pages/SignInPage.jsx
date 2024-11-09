@@ -28,7 +28,12 @@ const SignInPage = () => {
       localStorage.setItem("userLoggedIn", JSON.stringify(userLoggedIn))
       localStorage.setItem("token", response.token)
       localStorage.setItem("isAdmin", response.isAdmin)
-      navigate('/');
+      if (userLoggedIn.isAdmin === true) {
+        navigate("/admin/dashboard");
+      }
+      else {
+        navigate("/user/dashboard");
+      }
 
     } catch (error) {
       console.error('Error:', error);

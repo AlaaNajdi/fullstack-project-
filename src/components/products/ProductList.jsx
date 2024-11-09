@@ -9,7 +9,7 @@ import Sort from '../sort/Sort';
 
 
 export const ProductList = () => {
-  const { products, setSortBy, setSortOrder, sortBy, sortOrder, currentPage, setCurrentPage,totalPages } = useContext(ProductContext)
+  const { products, setSortBy, setSortOrder, currentPage, setCurrentPage,totalPages } = useContext(ProductContext)
   
 
 

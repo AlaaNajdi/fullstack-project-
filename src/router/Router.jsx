@@ -11,7 +11,10 @@ import SignOutPage from '../pages/SignOutPage';
 import ProtectedAdminRout from './ProtectedAdminRout';
 import ProtectedUserRoute from './ProtectedUserRoute';
 import ProductDetails from '../pages/ProductDetails';
-import UserDashboard from '../components/dashboard/UserDashboard';
+import AdminDashboard from '../components/dashboard/admin/AdminDashboard';
+import UserDashboard from '../components/dashboard/user/UserDashboard';
+import Users from '../components/dashboard/admin/Users';
+import AddProduct from '../components/dashboard/admin/AddProduct';
 
 
 const Router = () => {
@@ -47,16 +50,16 @@ const Router = () => {
           element: <SignOutPage />
         },
         {
-          path: "/user",
+          path: "/",
           element: <ProtectedUserRoute />,
           children: [
             {
-                 path: "dashboard", 
-                  element: <UserDashboard/> 
-            
+              path: "user/dashboard",
+              element: <UserDashboard/>
+
             },
             {
-              path: "profile",
+              path: "user/profile",
               element: <UserDashboard />
 
             },
@@ -64,15 +67,24 @@ const Router = () => {
           ],
         },
         {
-          path: "/admin",
-          element: <ProtectedUserRoute />,
+          path: "/",
+          element: <ProtectedAdminRout />,
           children: [
             {
-              path: "dashboard",
-              element: <UserDashboard />
-
+              path: "admin/dashboard", 
+              element: <AdminDashboard />,
+              children: [
+                {
+                  path: "users",  
+                  element: <Users /> 
+                },
+                {
+                  path: "Addproduct", 
+                  element: <AddProduct/> 
+                },
+            
+              ],
             },
-
           ],
         },
       ]

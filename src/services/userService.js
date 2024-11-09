@@ -1,9 +1,14 @@
-// import DecodeToken from "../../utility/DecodeToken";
-
-// export const getAllUsers = async (searchTerm, currentPage, pageSize) => {
-//   const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/users?Search=${searchTerm}&pageNumber=${currentPage}&pageSize=${pageSize}`);
-//   return response.data;
-// };
+export const getAllUsers = async (searchTerm, currentPage, pageSize, sortBy, sortOrder) => {
+  try {
+    const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/users?Search=${searchTerm}&pageNumber=${currentPage}&pageSize=${pageSize}&SortBy=${sortBy}&SortOrder=${sortOrder}`);
+  const data = await response.json();
+    console.log("User data response:", data);
+  return data;}
+  catch (error) {
+    console.error('Error fetching users:', error);
+    throw error;
+  }
+};
 
 export const signUpUser = async (formData) => {
   try {
@@ -21,7 +26,7 @@ export const signUpUser = async (formData) => {
 
 export const signInUser = async (formData) => {
   try {
-    const response = await fetch('http://localhost:5125/api/v1/auth/login', {
+    const response = await fetch('https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -34,6 +39,8 @@ export const signInUser = async (formData) => {
     console.error('Error:', error);
   }
 };
+
+
 
 
 

@@ -48,12 +48,6 @@ export const DeleteAdminProduct = async (id) => {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     });
-
-    if (!response.ok) {
-      const errorData = await response.json(); // get datails for any error
-      throw new Error(`Failed to delete product: ${errorData.message || response.statusText}`);
-    }
-
     return response;
   } catch (error) {
     console.error('Error:', error);
@@ -61,3 +55,15 @@ export const DeleteAdminProduct = async (id) => {
   }
 };
 
+export const DeleteAdminUser = async (id) => {
+  try {
+    const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/users/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};

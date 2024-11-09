@@ -17,7 +17,7 @@ const Searchbar = ({ onSearch }) => {
         type="text"
         value={query}
         onChange={handleChange}
-        placeholder="search about product"
+        placeholder="search "
       />
       <button type="submit">Search</button>
     </form>

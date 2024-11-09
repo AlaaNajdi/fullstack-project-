@@ -3,6 +3,7 @@ import { ProductContext } from '../../context/Productcontext';
 
 const SearchBar = ({ onSearch }) => {
   const { setSearchTerm } = useContext(ProductContext);
+  
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchChange = (event) => {

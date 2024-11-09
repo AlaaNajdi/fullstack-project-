@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../context/Usercontext';
 
 const NavBar = () => {
-  const { userLoggedIn } = useContext(UserContext);
+  const { userLoggedIn, isAdmin } = useContext(UserContext);
   console.log("navbar: ", userLoggedIn);
   return (
     <Navbar expand="lg" bg="light" variant="light">
@@ -13,16 +13,18 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link  to="/" >Home</Link>
+            <Link to="/" >Home</Link>
             {!userLoggedIn && (
               <>
-            <Link to="/signup">signup</Link>
-            <Link to="/signin">signin</Link>
-            </>)}
+                <Link to="/signup">signup</Link>
+                <Link to="/signin">signin</Link>
+              </>)}
             {userLoggedIn && (
               <>
-            <Link to="/signout">signout</Link>
-            </>)}
+                {isAdmin && <Link to="/admin/dashboard">Admin Dashboard</Link>}
+                {!isAdmin && <Link to="/user/dashboard">User Dashboard</Link>}
+                <Link to="/signout">signout</Link>
+              </>)}
           </Nav>
         </Navbar.Collapse>
       </Container>
