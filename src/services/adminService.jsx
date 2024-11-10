@@ -1,9 +1,10 @@
-export const CreatAdminProduct = async (formData) => {
+export const CreatAdminProduct = async (newProduct) => {
+  console.log("data should be sending", newProduct);
   try {
     const response = await fetch('https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(newProduct),
     });
 
     if (!response.ok) {

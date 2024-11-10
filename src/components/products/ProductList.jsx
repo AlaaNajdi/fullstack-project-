@@ -5,11 +5,14 @@ import { ProductContext } from '../../context/Productcontext';
 import SearchBar from '../searchbar/SearchBar';
 import Pagination from '../pagination/Pagination';
 import Sort from '../sort/Sort';
+import {UserContext} from '../../context/Usercontext'
+import DeleteProduct from '../dashboard/admin/DeleteProduct';
 
 
 
 export const ProductList = () => {
   const { products, setSortBy, setSortOrder, currentPage, setCurrentPage,totalPages } = useContext(ProductContext)
+  const { isAdmin } = useContext(UserContext);
   
 
 
@@ -47,15 +50,19 @@ export const ProductList = () => {
         onSortByChange={handleSortByChange}
         onSortOrderChange={handleSortOrderChange}
       />
+      {isAdmin ? (
+        <DeleteProduct /> // عرض مكون الحذف فقط للإدمن
+      ):(
       <ul>
         {
           Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <Product product={product} key={product.id} />
-            ))) : (
+              <Product product={product} key={product.id} isAdmin={isAdmin} />
+            ))
+           ) : (
             <li>No products available</li>
           )}
-      </ul>
+      </ul>)}
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
