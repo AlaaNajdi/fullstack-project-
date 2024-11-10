@@ -1,10 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
-import { getAllProducts } from '../services/productService';
+import { getAllCategories, getAllProducts } from '../services/productService';
 
 export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,7 +15,9 @@ export const ProductProvider = ({ children }) => {
   const [sortBy, setSortBy] = useState("name"); 
   const [sortOrder, setSortOrder] = useState("asc");
 
-
+  const addProduct = (newProduct) => {
+    setProducts((prevProducts) => [...prevProducts, newProduct]);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,9 +42,23 @@ export const ProductProvider = ({ children }) => {
   }, [currentPage, pageSize, sortBy, sortOrder]);
 
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const fetchedCategories = await getAllCategories();
+        setCategories(fetchedCategories.categories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
   return (
     <ProductContext.Provider value={{
-      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize, sortBy, setSortBy, sortOrder, setSortOrder,
+      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize, sortBy, setSortBy, sortOrder, setSortOrder, addProduct, categories, setCategories,
     }}>
       {children}
     </ProductContext.Provider>
