@@ -13,6 +13,8 @@ const AdminDashboard = () => {
           <ul>
             <li><Link to="users">Users</Link></li>
             <li><Link to="Addproduct">Add product</Link></li>
+            <li><Link to="Deleteproduct">Delete product</Link></li>
+            <li><Link to="UpdateProduct/:id">Update Product</Link></li>
             <li><Link to="orders">Orders</Link></li>
           </ul>
         </nav>

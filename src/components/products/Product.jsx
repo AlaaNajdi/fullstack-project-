@@ -9,9 +9,9 @@ const Product = ({ product, isAdmin }) => {
     navigate(`/productdetails/${product.id}`);
   }
 
-  // const handleUpdateClick = () => {
-  //   // تنفيذ منطق التحديث هنا
-  // };
+  const handleUpdateClick = () => {
+    navigate(`/admin/dashboard/UpdateProduct/${product.id}`); // الانتقال إلى صفحة التحديث باستخدام ID المنتج
+  };
 
   // const handleDeleteClick = () => {
   //   // تنفيذ منطق الحذف هنا
@@ -24,6 +24,9 @@ const Product = ({ product, isAdmin }) => {
         <h3>{product.name}</h3>
         <p>Prics: {product.price} SAR</p>
         <button onClick={handleDetailsClick}>Show deatils</button>
+        {isAdmin && (
+          <button onClick={handleUpdateClick}>Update Product</button> // زر التحديث فقط للمسؤول
+        )}
       </li>
     </div>
   )

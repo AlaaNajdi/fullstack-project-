@@ -15,6 +15,8 @@ import AdminDashboard from '../components/dashboard/admin/AdminDashboard';
 import UserDashboard from '../components/dashboard/user/UserDashboard';
 import Users from '../components/dashboard/admin/Users';
 import AddProduct from '../components/dashboard/admin/AddProduct';
+import DeleteProduct from '../components/dashboard/admin/DeleteProduct';
+import UpdateProduct from '../components/dashboard/admin/UpdateProduct';
 
 
 const Router = () => {
@@ -81,6 +83,14 @@ const Router = () => {
                 {
                   path: "Addproduct", 
                   element: <AddProduct/> 
+                },
+                {
+                  path: "Deleteproduct",
+                  element: <DeleteProduct />
+                },
+                {
+                  path: "UpdateProduct/:id",
+                  element: <UpdateProduct />
                 },
             
               ],

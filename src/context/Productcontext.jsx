@@ -19,6 +19,7 @@ export const ProductProvider = ({ children }) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
   };
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);

@@ -22,20 +22,21 @@ export const CreatAdminProduct = async (newProduct) => {
 };
 
 
-export const UpdateAdminProduct = async (id, formData) => {
+export const UpdateAdminProduct = async (id, updatedProduct) => {
   try {
     const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/products/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(updatedProduct),
     });
 
     if (!response.ok) {
       const errorData = await response.json(); // get datails for any error
       throw new Error(`Failed to update product: ${errorData.message || response.statusText}`);
     }
-    const UProduct = await response.json(); //get the new data is updeted
-    return UProduct;
+    const updatedProductData = await response.json();
+
+    return updatedProductData;
 
   } catch (error) {
     console.error('Error:', error);
