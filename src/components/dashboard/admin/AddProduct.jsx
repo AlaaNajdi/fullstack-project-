@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
 import { ProductContext } from '../../../context/Productcontext';
@@ -15,7 +14,7 @@ const AddProduct = () => {
     name: '',
     image: '',
     price: 0,
-    categoryId: '',  // إضافة حقل الفئة
+    categoryId: '', 
   });
   const [errors, setErrors] = useState({});
   const handleChange = (event) => {
@@ -48,7 +47,6 @@ const AddProduct = () => {
         // رفع الصورة إلى Cloudinary
         const imageUrl = await uploadImageToCloudinary(product.image);
         const newProduct = {
-          // id: nanoid(),
           name: product.name,
           price: parseFloat(product.price),
           imageUrl: imageUrl,  // استخدام رابط الصورة

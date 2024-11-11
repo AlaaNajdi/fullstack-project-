@@ -32,6 +32,7 @@ const DeleteProduct = () => {
           <img src={product.imageUrl} alt="pro1 " />
           <h3>Name: {product.name}</h3>
           <button onClick={() => handleDelete(product.id)}>Delete</button>
+
         </li>
       ))}
       <Pagination

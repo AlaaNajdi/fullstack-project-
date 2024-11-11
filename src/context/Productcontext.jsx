@@ -19,8 +19,7 @@ export const ProductProvider = ({ children }) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
   };
 
-
-  useEffect(() => {
+ 
     const fetchProducts = async () => {
       setIsLoading(true);
       try {
@@ -38,8 +37,10 @@ export const ProductProvider = ({ children }) => {
         setIsLoading(false)
       }
     };
-    fetchProducts();
 
+  
+  useEffect(() => {
+    fetchProducts();
   }, [currentPage, pageSize, sortBy, sortOrder]);
 
 
@@ -59,7 +60,7 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider value={{
-      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize, sortBy, setSortBy, sortOrder, setSortOrder, addProduct, categories, setCategories,
+      products, setProducts, isLoading, error, searchTerm, setSearchTerm, currentPage, setCurrentPage, totalPages, pageSize, sortBy, setSortBy, sortOrder, setSortOrder, addProduct, categories, setCategories, fetchProducts
     }}>
       {children}
     </ProductContext.Provider>
