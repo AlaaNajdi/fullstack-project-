@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/Usercontext';
+import CartIcon from '../components/cart/CartIcon';
 
 const NavBar = () => {
   const { userLoggedIn, isAdmin } = useContext(UserContext);
@@ -21,9 +22,13 @@ const NavBar = () => {
               </>)}
             {userLoggedIn && (
               <>
+                
                 {isAdmin && <Link to="/admin/dashboard">Admin Dashboard</Link>}
                 {!isAdmin && <Link to="/user/dashboard">User Dashboard</Link>}
                 <Link to="/signout">signout</Link>
+                <Link to="/cart">
+                  <CartIcon /> {/* استخدم CartIcon مباشرة هنا */}
+                </Link>
               </>)}
           </Nav>
         </Navbar.Collapse>

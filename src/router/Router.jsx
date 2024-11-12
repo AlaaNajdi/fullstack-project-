@@ -17,6 +17,7 @@ import Users from '../components/dashboard/admin/Users';
 import AddProduct from '../components/dashboard/admin/AddProduct';
 import DeleteProduct from '../components/dashboard/admin/DeleteProduct';
 import UpdateProduct from '../components/dashboard/admin/UpdateProduct';
+import Cart from '../components/cart/Cart';
 
 
 const Router = () => {
@@ -50,6 +51,10 @@ const Router = () => {
         {
           path: "/signout",
           element: <SignOutPage />
+        },
+        {
+          path: '/cart',
+          element: <Cart />,
         },
         {
           path: "/",
