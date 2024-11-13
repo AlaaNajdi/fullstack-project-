@@ -28,7 +28,16 @@ export const SignUpPage = () => {
   ];
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column',
+        textAlign: 'center',
+      }}
+    >
       <h2>Sign Up</h2>
       <ReusableForm formFields={formFields} onSubmit={handleSignUp} submitText="Sign Up" />
     </div>

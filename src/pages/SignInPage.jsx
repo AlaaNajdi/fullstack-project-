@@ -59,7 +59,17 @@ const SignInPage = () => {
   ];
 
   return (
-    <div><h2>Sign In</h2>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        flexDirection: 'column',
+        textAlign: 'center',
+      }}
+    >
+      <h2>Sign In</h2>
       <ReusableForm formFields={formFields} onSubmit={handleSignIn} submitText="Sign In" />
     </div>
   )

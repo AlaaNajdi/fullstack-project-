@@ -135,7 +135,7 @@ const AdminDashboard = () => {
           <Box display="flex" gap="20px">
             <StatsCard>
               <Typography variant="h6">Total Users</Typography>
-              <Typography variant="h4">5</Typography>
+              <Typography variant="h4">2</Typography>
             </StatsCard>
             <StatsCard>
               <Typography variant="h6">Products</Typography>
