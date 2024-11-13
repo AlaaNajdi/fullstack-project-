@@ -1,5 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { getAllUsers } from '../services/userService';
+import { CartContext } from './CartContext';
+import jwtDecode from 'jwt-decode'; 
+
 
 export const UserContext = createContext();
 
@@ -19,7 +22,14 @@ export const UserProvider = ({ children }) => {
   const [userName, setUserName] = useState(null);
   const [userId, setUserId] = useState(null);
   const [userLoggedInData, setUserLoggedInData] = useState(null)
+  const { setCart } = useContext(CartContext)
+  // const loadCartFromLocalStorage = () => {
+  //   const cartData = localStorage.getItem('cart');
+  //   return cartData ? JSON.parse(cartData) : [];
+  // };
 
+  // const context = useContext(CartContext)
+  // console.log(context)
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -43,26 +53,42 @@ export const UserProvider = ({ children }) => {
   }, [currentPage, pageSize, sortBy, sortOrder]);
 
   useEffect(() => {
-    const storedToken = JSON.parse(localStorage.getItem('token'));
+    const storedToken = localStorage.getItem('token');
     const storedUserLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     const storedUserIsAdmin = JSON.parse(localStorage.getItem('isAdmin'));
 
-    if (storedToken && storedUserLoggedIn == true) {
+    if (storedToken && storedUserLoggedIn === true) {
       setToken(storedToken);
       setUserLoggedIn(true);
       setIsAdmin(storedUserIsAdmin);
+
+      try {
+        const decodedUserId = jwtDecode(storedToken);
+        console.log("Decoded User ID:", decodedUserId.nameid);
+        setUserId(decodedUserId.nameid); // تخزين الـ userId
+        localStorage.setItem("userId", decodedUserId.nameid); // تخزين الـ userId في الـ localStorage
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    } else {
+      // يمكن إلغاء تفعيل المستخدم إذا كانت البيانات غير موجودة
+      signOutUser();
     }
   }, []);
 
 
   const signOutUser = () => {
-    localStorage.setItem('token', null);
-    localStorage.setItem('userLoggedIn', false);
-    localStorage.setItem('isAdmin', false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('userLoggedIn');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('cart')
+    localStorage.removeItem('userId');
 
     setUserLoggedIn(false);
     setToken(null);
     setIsAdmin(false);
+    setCart([]);
+    setUserId(null);
   };
 
   return (

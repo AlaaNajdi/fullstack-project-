@@ -18,6 +18,8 @@ import AddProduct from '../components/dashboard/admin/AddProduct';
 import DeleteProduct from '../components/dashboard/admin/DeleteProduct';
 import UpdateProduct from '../components/dashboard/admin/UpdateProduct';
 import Cart from '../components/cart/Cart';
+import Profile from '../components/dashboard/user/Profile';
+import ProductList from '../components/products/ProductList';
 
 
 const Router = () => {
@@ -31,6 +33,10 @@ const Router = () => {
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/ProductList",
+          element: <ProductList />,
         },
         {
           path: "/about",
@@ -62,15 +68,14 @@ const Router = () => {
           children: [
             {
               path: "user/dashboard",
-              element: <UserDashboard/>
-
-            },
-            {
-              path: "user/profile",
-              element: <UserDashboard />
-
-            },
-
+              element: <UserDashboard />,
+              children: [
+                {
+                  path: "profile", // المسار الفرعي 'profile' هنا داخل children لـ 'user/dashboard'
+                  element: <Profile/>
+                }
+              ]
+            }
           ],
         },
         {

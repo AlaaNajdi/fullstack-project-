@@ -6,13 +6,13 @@ import UserProvider from './context/Usercontext';
 import { CartProvider } from './context/CartContext';
 
 function App() {
-  return <UserProvider>
-  <ProductProvider>
-    <CartProvider>
-    <Router />
-    </CartProvider>
-  </ProductProvider>
-  </UserProvider>
+  return <CartProvider>
+    <UserProvider>
+      <ProductProvider>
+        <Router />
+      </ProductProvider>
+    </UserProvider>
+  </CartProvider>
 }
 
 export default App

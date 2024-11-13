@@ -5,7 +5,7 @@ import { CartContext } from '../../context/CartContext';
 
 const Product = ({ product}) => {
   const navigate = useNavigate();
-  const { cart, addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const { userLoggedIn} = useContext(UserContext);
 
 
@@ -22,6 +22,7 @@ const Product = ({ product}) => {
         <img src={product.imageUrl} alt="pro1 " />
         <h3>{product.name}</h3>
         <p>Prics: {product.price} SAR</p>
+        <p>Description:{product.description}</p>
         <button onClick={handleDetailsClick}>Show deatils</button>
         {userLoggedIn &&(
           <button onClick={handleAddToCart}>Add to Cart</button>

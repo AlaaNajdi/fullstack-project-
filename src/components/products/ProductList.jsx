@@ -1,21 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import Product from './Product';
 import { ProductContext } from '../../context/Productcontext';
 import SearchBar from '../searchbar/SearchBar';
 import Pagination from '../pagination/Pagination';
 import Sort from '../sort/Sort';
-import {UserContext} from '../../context/Usercontext'
-
-
+import { UserContext } from '../../context/Usercontext';
 
 export const ProductList = () => {
-  const { products, setSortBy, setSortOrder, currentPage, setCurrentPage,totalPages } = useContext(ProductContext)
+  const { products, setSortBy, setSortOrder, currentPage, setCurrentPage, totalPages, isLoading, error } = useContext(ProductContext);
   const { isAdmin } = useContext(UserContext);
-  
-
-
   const [filteredProducts, setFilteredProducts] = useState(products);
+
+  // قم بإعادة ترتيب الكود هنا
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
 
   const handleSearch = (searchTerm) => {
     if (!products || products.length === 0) {
@@ -27,11 +26,6 @@ export const ProductList = () => {
     setFilteredProducts(results);
   };
 
-
-  useEffect(() => {
-    setFilteredProducts(products);
-  }, [products]);
-
   const handleSortByChange = (event) => {
     setSortBy(event.target.value);
   };
@@ -40,9 +34,18 @@ export const ProductList = () => {
     setSortOrder(event.target.value);
   };
 
+  // العودة المبكرة يجب أن تأتي بعد استدعاء الـ hooks
+  if (isLoading) {
+    return <p>Products are loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
   return (
     <div>
-      <h2>Available products :</h2>
+      <h2>Available products:</h2>
       <SearchBar onSearch={handleSearch} />
       <br />
       <Sort
@@ -64,7 +67,7 @@ export const ProductList = () => {
         onPageChange={setCurrentPage}
       />
     </div>
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;

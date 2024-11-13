@@ -29,7 +29,6 @@ export const ProductProvider = ({ children }) => {
 
         if (currentPage > Math.ceil(response.product.totalCount / pageSize)) {
           setCurrentPage(Math.ceil(response.product.totalCount / pageSize));}
-
       } catch (error) {
         setError(error)
         console.error('Error fetching products:', error);

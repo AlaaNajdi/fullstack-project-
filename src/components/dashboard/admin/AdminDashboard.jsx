@@ -6,8 +6,10 @@ import UserSearchBar from '../../searchbar/UserSearchBar';
 const AdminDashboard = () => {
   return (
     <div className="dashboard-layout">
+      <header className="dashboard-header">
+        <h1>Welcome to the Admin Dashboard</h1>
+      </header>
       <aside className="sidebar">
-        <h2>Admin Dashboard</h2>
         <UserSearchBar />
         <nav>
           <ul>
@@ -20,9 +22,6 @@ const AdminDashboard = () => {
         </nav>
       </aside>
       <div className="main-content">
-        <header className="dashboard-header">
-          <h1>Welcome to the Admin Dashboard</h1>
-        </header>
         <main>
           <Outlet />
         </main>

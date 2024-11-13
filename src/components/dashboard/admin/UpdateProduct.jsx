@@ -2,13 +2,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../../context/Productcontext';
 import { UpdateAdminProduct } from '../../../services/adminService';
-import Pagination from '../../pagination/Pagination';
+// import Pagination from '../../pagination/Pagination';
+import { TextField, Button, Typography, Container, Grid, Box } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
 
 const UpdateProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { products, currentPage, setCurrentPage, totalPages, searchTerm, fetchProducts } = useContext(ProductContext);
-  const [product, setProduct] = useState({ name: '', price: '', imageUrl: '' });
+  const [product, setProduct] = useState({ name: '', price: '', imageUrl: '', Description :''});
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,64 +43,107 @@ const UpdateProduct = () => {
     navigate(`/admin/dashboard/UpdateProduct/${productId}`);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={product.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-          />
-        </label>
-        {/* <label>
-          Description:
-          <textarea
-            name="description"
-            value={product.description}
-            onChange={handleChange}
-          />
-        </label> */}
-        <label>
-          Image URL:
-          <input
-            type="file"
-            accept="image/*"
-            name="imageUrl"
-            value={product.imageUrl}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit" >Update Product</button>
+    <Container maxWidth="sm">
+      <Box sx={{ padding: 3, backgroundColor: '#fff', borderRadius: '8px', boxShadow: 3 }}>
+        <Typography variant="h5" gutterBottom>
+          Update Product
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name"
+                name="name"
+                value={product.name}
+                onChange={handleChange}
+                variant="outlined"
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Price"
+                name="price"
+                value={product.price}
+                onChange={handleChange}
+                variant="outlined"
+                type="number"
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Description"
+                name="Description"
+                value={product.Description}
+                onChange={handleChange}
+                variant="outlined"
+                multiline
+                rows={4}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Image URL"
+                name="imageUrl"
+                value={product.imageUrl}
+                onChange={handleChange}
+                variant="outlined"
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{ padding: '10px', fontSize: '16px' }}
+              >
+                Update Product
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Box>
 
-      </form>
-      {filteredProducts.map((product) => (
-        <li key={product.id}>
-          <h3>Id: {product.id}</h3>
-          <img src={product.imageUrl} alt="pro1 " />
-          <h3>Name: {product.name}</h3>
-          <button onClick={() => handleDelete(product.id)}>Delete</button>
-          <button onClick={() => handleUpdateClick(product.id)}>Update Product</button>
+      {/* Product List */}
+      <Box sx={{ marginTop: 4 }}>
+        {filteredProducts.map((product) => (
+          <Box
+            key={product.id}
+            sx={{ padding: 2, border: '1px solid #ddd', borderRadius: '8px', marginBottom: 2 }}
+          >
+            <img src={product.imageUrl} alt="product" style={{ width: '100%', maxHeight: '200px', objectFit: 'cover', borderRadius: '8px' }} />
+            <Typography variant="body1" mt={2}>Name: {product.name}</Typography>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => handleUpdateClick(product.id)}
+              sx={{ marginTop: 1 }}
+            >
+              Update Product
+            </Button>
+          </Box>
+        ))}
+      </Box>
 
-        </li>
-      ))}
+      {/* Pagination */}
       <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
+        count={totalPages}
+        page={currentPage}
+        onChange={(_, page) => setCurrentPage(page)}
+        color="primary"
+        sx={{ marginTop: 4, display: 'flex', justifyContent: 'center' }}
       />
-    </div>
-  )
-}
+    </Container>
+  );
+};
+
 
 export default UpdateProduct

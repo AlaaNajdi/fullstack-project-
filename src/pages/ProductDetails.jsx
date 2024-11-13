@@ -25,6 +25,7 @@ const ProductDetails = () => {
           <img src={product.imageUrl} alt={product.name} />
           <h3>{product.name}</h3>
           <p>Prics: {product.price} SAR</p>
+          <p>Description:{product.description}</p>
           <p>Category:{product.categoryName}</p>
         </li>
       </ul>

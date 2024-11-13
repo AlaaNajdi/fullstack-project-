@@ -69,3 +69,4 @@ export const DeleteAdminUser = async (id) => {
     throw error;
   }
 };
+

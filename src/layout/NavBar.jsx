@@ -5,8 +5,13 @@ import { UserContext } from '../context/Usercontext';
 import CartIcon from '../components/cart/CartIcon';
 
 const NavBar = () => {
-  const { userLoggedIn, isAdmin } = useContext(UserContext);
-  console.log("navbar: ", userLoggedIn);
+  const { userLoggedIn, isAdmin, signOutUser } = useContext(UserContext);
+  
+
+  const handleSignOut = () => {
+    signOutUser();
+  }
+
   return (
     <Navbar expand="lg" bg="light" variant="light">
       <Container>
@@ -15,17 +20,19 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link to="/" >Home</Link>
+            <Link to="/ProductList">Product List</Link>
             {!userLoggedIn && (
               <>
-                <Link to="/signup">signup</Link>
-                <Link to="/signin">signin</Link>
+                <Link to="/signup">Signup</Link>
+                <Link to="/signin">Signin</Link>
+                
               </>)}
             {userLoggedIn && (
               <>
-                
+
                 {isAdmin && <Link to="/admin/dashboard">Admin Dashboard</Link>}
                 {!isAdmin && <Link to="/user/dashboard">User Dashboard</Link>}
-                <Link to="/signout">signout</Link>
+                <Link to="/signout" onClick={handleSignOut}>Signout</Link>
                 <Link to="/cart">
                   <CartIcon /> {/* استخدم CartIcon مباشرة هنا */}
                 </Link>
