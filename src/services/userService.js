@@ -13,7 +13,7 @@ export const getAllUsers = async (searchTerm, currentPage, pageSize, sortBy, sor
 
 export const getUserByIdService = async (id) => {
   try {
-    const response = await fetch(`http://localhost:5125/api/v1/users/${id}`);
+    const response = await fetch(`https://sda-3-onsite-backend-teamwork-bw5k.onrender.com/api/v1/users/${id}`);
     const data = await response.json();
     return data;
   } catch (error) {

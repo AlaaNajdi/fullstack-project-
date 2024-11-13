@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/productService';
+import { Card, CardMedia, CardContent, Typography, Container } from '@mui/material';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,23 +15,35 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (!product) return <p>Loading...</p>;
-
+  if (!product) return <Typography variant="h6" align="center">Loading...</Typography>;
 
   return (
-    <div>
-      <h2>Available products :</h2>
-      <ul>
-        <li key={product.id}>
-          <img src={product.imageUrl} alt={product.name} />
-          <h3>{product.name}</h3>
-          <p>Prics: {product.price} SAR</p>
-          <p>Description:{product.description}</p>
-          <p>Category:{product.categoryName}</p>
-        </li>
-      </ul>
-    </div>
-  )
-}
+    <Container maxWidth="md" style={{ paddingTop: '20px' }}>
+      <Card sx={{ display: 'flex' }}>
+        <CardMedia
+          component="img"
+          alt={product.name}
+          height="400"
+          image={product.imageUrl}
+          sx={{ width: '40%' }}
+        />
+        <CardContent sx={{ flex: 1, padding: '16px' }}>
+          <Typography gutterBottom variant="h6" component="div" align="left" sx={{ fontSize: '1.2rem' }}>
+            {product.name}
+          </Typography>
+          <Typography variant="body1" color="text.primary" align="left" sx={{ fontSize: '1rem', marginBottom: '8px' }}>
+            {product.price} SAR
+          </Typography>
+          <Typography variant="body2" color="text.secondary" paragraph align="left" sx={{ fontSize: '0.9rem' }}>
+            {product.description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" align="left" sx={{ fontSize: '0.9rem' }}>
+            Category: {product.categoryName}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Container>
+  );
+};
 
-export default ProductDetails
+export default ProductDetails;

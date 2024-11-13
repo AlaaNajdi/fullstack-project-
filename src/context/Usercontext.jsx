@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(2);
   const [sortBy, setSortBy] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
   const [Token, setToken] = useState();
@@ -37,9 +37,9 @@ export const UserProvider = ({ children }) => {
       try {
         const response = await getAllUsers(searchTerm, currentPage, pageSize, sortBy, sortOrder);
         setUsers(response.users);
-        setTotalPages(Math.ceil(response.users.totalCount / pageSize));
-        if (currentPage > Math.ceil(response.users.totalCount / pageSize)) {
-          setCurrentPage(Math.ceil(response.users.totalCount / pageSize));
+        setTotalPages(Math.ceil(response.totalCount / pageSize));
+        if (currentPage > Math.ceil(response.totalCount / pageSize)) {
+          setCurrentPage(Math.ceil(response.totalCount / pageSize));
         }
       } catch (error) {
         setError(error)

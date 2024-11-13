@@ -1,26 +1,38 @@
-import React from 'react'
+import React from 'react';
+import { Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
 
-export const Sort = ({ sortBy, sortOrder, onSortByChange, onSortOrderChange }) => {
+export const Sort = ({ sortBy = '', sortOrder = '', onSortByChange, onSortOrderChange }) => {
   return (
-    <div>
-      <label>
-        Sort By:
-        <select onChange={onSortByChange} value={sortBy}>
-          <option value="" disabled>Select an option</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-        </select>
-      </label>
-      <label>
-        Sort Order:
-        <select onChange={onSortOrderChange} value={sortOrder}>
-          <option value="" disabled>Select an Order</option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </label>
-    </div>
-  )
-}
+    <Box display="flex" gap={2} justifyContent="center" alignItems="center" marginTop={2}>
+      <FormControl sx={{ minWidth: 120 }}>
+        <InputLabel>Sort By</InputLabel>
+        <Select
+          value={sortBy}
+          onChange={onSortByChange}
+          label="Sort By"
+          variant="outlined"
+        >
+          <MenuItem value="" disabled>Select an option</MenuItem>
+          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="price">Price</MenuItem>
+        </Select>
+      </FormControl>
 
-export default Sort
+      <FormControl sx={{ minWidth: 120 }}>
+        <InputLabel>Sort Order</InputLabel>
+        <Select
+          value={sortOrder}
+          onChange={onSortOrderChange}
+          label="Sort Order"
+          variant="outlined"
+        >
+          <MenuItem value="" disabled>Select an Order</MenuItem>
+          <MenuItem value="asc">Ascending</MenuItem>
+          <MenuItem value="desc">Descending</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+  );
+};
+
+export default Sort;

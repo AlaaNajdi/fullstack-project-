@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { ProductContext } from '../../../context/Productcontext'
+import React, { useContext } from 'react';
+import { ProductContext } from '../../../context/Productcontext';
 import { DeleteAdminProduct } from '../../../services/adminService';
-import Pagination from '../../pagination/Pagination';
+import Pagination from '@mui/material/Pagination';
+import { Box, Button, Typography } from '@mui/material';
 
 const DeleteProduct = () => {
-  const { products, setProducts, currentPage, setCurrentPage, totalPages, searchTerm }=useContext(ProductContext)
+  const { products, setProducts, currentPage, setCurrentPage, totalPages, searchTerm } = useContext(ProductContext);
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -17,31 +18,74 @@ const DeleteProduct = () => {
         const updatedProducts = products.filter(product => product.id !== id);
         setProducts(updatedProducts);
       } else {
-        alert('some error when delete products');
+        alert('An error occurred while deleting the product.');
       }
     } catch (error) {
-      console.error('Error deleting products:', error);
-      alert('some error when deledted products');
+      console.error('Error deleting product:', error);
+      alert('An error occurred while deleting the product.');
     }
   };
+
   return (
-    <div>
+    <Box sx={{ padding: 3 }}>
+      {/* Product List */}
       {filteredProducts.map((product) => (
-        <li key={product.id}>
-          <h3>Id: {product.id}</h3>
-          <img src={product.imageUrl} alt="pro1 " />
-          <h3>Name: {product.name}</h3>
-          <button onClick={() => handleDelete(product.id)}>Delete</button>
-
-        </li>
+        <Box
+          key={product.id}
+          sx={{
+            padding: 2,
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            marginBottom: 2,
+            backgroundColor: '#fff',
+            boxShadow: 1,
+            display: 'flex', // لجعل البوكس أفقيًا
+            alignItems: 'center',
+            gap: 2,
+            height: '150px', // تقليل ارتفاع البوكس
+          }}
+        >
+          <img
+            src={product.imageUrl}
+            alt="product"
+            style={{
+              width: '150px', // عرض محدد للصورة
+              height: '100%', // يملأ ارتفاع البوكس
+              objectFit: 'cover',
+              borderRadius: '8px',
+            }}
+          />
+          <Box sx={{ flexGrow: 1 }}> {/* محتوى النصوص */}
+            <Typography variant="body1">
+              Name: {product.name}
+            </Typography>
+          </Box>
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{
+              '&:hover': {
+                borderColor: '#d32f2f',
+                backgroundColor: '#fce4ec',
+              },
+            }}
+            onClick={() => handleDelete(product.id)}
+          >
+            Delete
+          </Button>
+        </Box>
       ))}
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
-    </div>
-  )
-}
 
-export default DeleteProduct
+      {/* Pagination */}
+      <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={(_, page) => setCurrentPage(page)}
+        color="primary"
+        sx={{ marginTop: 4, display: 'flex', justifyContent: 'center' }}
+      />
+    </Box>
+  );
+};
+
+export default DeleteProduct;
