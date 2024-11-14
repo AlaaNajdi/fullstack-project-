@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
+
 import { Box, Typography, Button, Divider, TextField } from '@mui/material';
 import { CartContext } from '../../context/CartContext';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart, updateQuantity } = useContext(CartContext); // استخدام useContext
+  const { cart, removeFromCart, clearCart, updateQuantity } = useContext(CartContext); 
 
   const [address, setAddress] = useState('');
   const [addressEditing, setAddressEditing] = useState(false);
@@ -35,7 +36,6 @@ const Cart = () => {
       </Typography>
     ) : (
       <>
-        {/* زر مسح السلة */}
         <Button
           variant="outlined"
           color="secondary"
@@ -80,7 +80,6 @@ const Cart = () => {
               </Typography>
 
               <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 1 }}>
-                {/* التحكم في الكمية */}
                 <Button
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
                   sx={{ marginRight: 1 }}
@@ -96,15 +95,14 @@ const Cart = () => {
                 </Button>
               </Box>
 
-              {/* زر إزالة المنتج */}
               <Button
                 variant="contained"
 
                 onClick={() => removeFromCart(item.id)}
                 sx={{
-                  marginTop: 2, width: '100%', minWidth: 0, backgroundColor: '#B5E2FA',  // اللون الأصفر
+                  marginTop: 2, width: '100%', minWidth: 0, backgroundColor: '#B5E2FA', 
                   '&:hover': {
-                    backgroundColor: '#F9F7F3',  // لون أغمق عند المرور بالفأرة
+                    backgroundColor: '#F9F7F3',  
                   },
                 }}
               >
@@ -114,7 +112,6 @@ const Cart = () => {
           </Box>
         ))}
 
-        {/* تلخيص الطلب */}
         <Box sx={{ marginTop: 3, backgroundColor: '#fff', padding: 3, borderRadius: 2, boxShadow: 1 }}>
           <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>
             Order Summary
@@ -132,7 +129,6 @@ const Cart = () => {
             Proceed to Checkout
           </Button>
 
-          {/* تعديل العنوان */}
           <Box sx={{ marginTop: 4 }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
               Shipping Address

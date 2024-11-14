@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+
 import { Box, Typography, Container, List, ListItem, ListItemText, Divider, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 import { FiUsers, FiPackage, FiShoppingCart, FiSettings } from 'react-icons/fi';
@@ -26,7 +27,7 @@ const Sidebar = styled('aside')({
   transition: 'all 0.3s ease',
 });
 
-const DashboardHeader = styled('header')({ 
+const DashboardHeader = styled('header')({
   padding: '20px',
   color: 'black',
   textAlign: 'center',
@@ -90,14 +91,11 @@ const StatsCard = styled(Paper)({
 const AdminDashboard = () => {
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
-      {/* Sidebar */}
       <Sidebar>
         <DashboardHeader>
           <Typography variant="h6">Admin Dashboard</Typography>
         </DashboardHeader>
-        {/* Search Bar */}
-        
-        {/* Navigation Links */}
+
         <SidebarNav>
           <List>
             <ListItem button="true" component={Link} to="users">
@@ -128,10 +126,8 @@ const AdminDashboard = () => {
         </SidebarNav>
       </Sidebar>
 
-      {/* Main Content */}
       <MainContent>
         <Container>
-          {/* Stats Section */}
           <Box display="flex" gap="20px">
             <StatsCard>
               <Typography variant="h6">Total Users</Typography>

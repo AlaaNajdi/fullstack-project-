@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+
+import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { UserContext } from '../context/Usercontext';
 import CartIcon from '../components/cart/CartIcon';
 
@@ -13,8 +14,8 @@ const NavBar = () => {
 
   return (
     <AppBar position="sticky" sx={{
-      background: 'linear-gradient(45deg, #ffcc5c,#96387C, #ffcc5c)', // تدرج لوني جذاب
-      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // إضافة تأثير الظل
+      background: 'linear-gradient(45deg, #ffcc5c,#96387C, #ffcc5c)', 
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
     }}>
       <Toolbar>
         <Typography variant="h6" sx={{
@@ -31,7 +32,7 @@ const NavBar = () => {
         <Button sx={{
           color: '#fff',
           '&:hover': {
-            backgroundColor: '#8B5DFF', // تأثير عند التمرير
+            backgroundColor: '#8B5DFF', 
           },
         }} component={Link} to="/">Home</Button>
         <Button sx={{

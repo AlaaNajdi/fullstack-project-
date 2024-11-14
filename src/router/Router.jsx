@@ -71,7 +71,7 @@ const Router = () => {
               element: <UserDashboard />,
               children: [
                 {
-                  path: "profile", // المسار الفرعي 'profile' هنا داخل children لـ 'user/dashboard'
+                  path: "profile", 
                   element: <Profile/>
                 }
               ]

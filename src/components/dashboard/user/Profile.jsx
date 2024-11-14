@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import { getUserByIdService } from '../../../services/userService';
 import { Card, CardContent, Typography, Grid, CircularProgress, Container, Box, Divider } from '@mui/material';
-import { styled } from '@mui/system';
 
 export const Profile = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -42,7 +42,6 @@ export const Profile = () => {
                 </Typography>
                 <Divider sx={{ marginBottom: 2 }} />
                 
-                {/* إضافة المزيد من المعلومات إذا لزم الأمر */}
                 <Typography variant="body1" color="#AE6D4B" paragraph>
                   <strong>User ID:</strong> {userInfo.userId}
                 </Typography>

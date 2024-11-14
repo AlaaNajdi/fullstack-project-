@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+
 import { getAllCategories, getAllProducts } from '../services/productService';
 
 export const ProductContext = createContext();

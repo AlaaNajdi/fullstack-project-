@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Button, Box, Pagination as MuiPagination } from '@mui/material';
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {

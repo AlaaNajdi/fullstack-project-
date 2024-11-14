@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import { ProductContext } from '../../../context/Productcontext';
 import { UpdateAdminProduct } from '../../../services/adminService';
-// import Pagination from '../../pagination/Pagination';
 import { TextField, Button, Typography, Container, Grid, Box } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 
@@ -10,7 +10,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { products, currentPage, setCurrentPage, totalPages, searchTerm, fetchProducts } = useContext(ProductContext);
-  const [product, setProduct] = useState({ name: '', price: '', imageUrl: '', Description :''});
+  const [product, setProduct] = useState({ name: '', price: '', imageUrl: '', Description: '' });
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -112,7 +112,6 @@ const UpdateProduct = () => {
         </form>
       </Box>
 
-      {/* Product List */}
       <Box sx={{ marginTop: 4 }}>
         {filteredProducts.map((product) => (
           <Box
@@ -133,7 +132,6 @@ const UpdateProduct = () => {
         ))}
       </Box>
 
-      {/* Pagination */}
       <Pagination
         count={totalPages}
         page={currentPage}

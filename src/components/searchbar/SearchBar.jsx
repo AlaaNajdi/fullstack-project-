@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
+
 import { ProductContext } from '../../context/Productcontext';
-import { TextField, Box } from '@mui/material'; // استيراد المكونات من MUI
+import { TextField, Box } from '@mui/material'; 
 
 const SearchBar = ({ onSearch }) => {
   const { setSearchTerm } = useContext(ProductContext);
@@ -22,15 +23,15 @@ const SearchBar = ({ onSearch }) => {
       width="100%"
     >
       <TextField
-        variant="outlined" // تصميم بحواف واضحة
+        variant="outlined" 
         placeholder="Search about product"
         value={searchValue}
         onChange={handleSearchChange}
-        size="small" // تحديد الحجم الصغير
-        fullWidth // العرض الكامل
+        size="small"
+        fullWidth 
         sx={{
-          maxWidth: '500px', // تحديد العرض الأقصى للحقل
-          backgroundColor: '#fff', // خلفية بيضاء
+          maxWidth: '500px', 
+          backgroundColor: '#fff', 
         }}
       />
     </Box>

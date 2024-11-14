@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+
 import { ProductContext } from '../../../context/Productcontext';
 import { DeleteAdminProduct } from '../../../services/adminService';
 import Pagination from '@mui/material/Pagination';
@@ -28,7 +29,6 @@ const DeleteProduct = () => {
 
   return (
     <Box sx={{ padding: 3 }}>
-      {/* Product List */}
       {filteredProducts.map((product) => (
         <Box
           key={product.id}
@@ -39,23 +39,23 @@ const DeleteProduct = () => {
             marginBottom: 2,
             backgroundColor: '#fff',
             boxShadow: 1,
-            display: 'flex', // لجعل البوكس أفقيًا
+            display: 'flex', 
             alignItems: 'center',
             gap: 2,
-            height: '150px', // تقليل ارتفاع البوكس
+            height: '150px', 
           }}
         >
           <img
             src={product.imageUrl}
             alt="product"
             style={{
-              width: '150px', // عرض محدد للصورة
-              height: '100%', // يملأ ارتفاع البوكس
+              width: '150px', 
+              height: '100%', 
               objectFit: 'cover',
               borderRadius: '8px',
             }}
           />
-          <Box sx={{ flexGrow: 1 }}> {/* محتوى النصوص */}
+          <Box sx={{ flexGrow: 1 }}>
             <Typography variant="body1">
               Name: {product.name}
             </Typography>
@@ -76,7 +76,6 @@ const DeleteProduct = () => {
         </Box>
       ))}
 
-      {/* Pagination */}
       <Pagination
         count={totalPages}
         page={currentPage}

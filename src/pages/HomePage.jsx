@@ -1,22 +1,22 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-// استيراد صورة الخلفية
+import { Box, Typography, Button } from '@mui/material';
+
+
 const backgroundImage = "https://i.pinimg.com/736x/a8/a7/40/a8a740267bf4698983221489fe16db97.jpg";
 
 const HomePage = () => {
   return (
     <>
-      {/* أول صورة مع اسم الموقع وعبارة ترحيبية */}
       <Box
         sx={{
-          backgroundImage: `url(${backgroundImage})`, // تأكد من تعريف backgroundImage
-          backgroundSize: 'contain',   // لتغطية كامل المساحة
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'contain',  
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'left',   // لضبط الصورة في المنتصف
-          height: '100vh',   // تحديد الارتفاع ليشمل كامل النافذة
-          width: '100%',   // التأكد من أن العرض يغطي كامل المساحة
+          backgroundPosition: 'left', 
+          height: '100vh',  
+          width: '100%',   
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -30,7 +30,7 @@ const HomePage = () => {
             textAlign: 'right',
             color: '#000000',
             padding: 2,
-            width: '70%', // تحديد العرض للنص
+            width: '70%', 
           }}
         >
           <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
@@ -40,7 +40,6 @@ const HomePage = () => {
             Explore the most beautiful vintage pieces and start renewing your home today!
           </Typography>
 
-          {/* الأزرار للتوجيه إلى الصفحات */}
           <Box sx={{ marginTop: 3 }}>
             <Link to="/ProductList" style={{ textDecoration: 'none' }}>
               <Button variant="contained" color="primary" sx={{ marginRight: 2 }}>

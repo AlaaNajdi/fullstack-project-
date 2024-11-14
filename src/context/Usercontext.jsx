@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+
 import { getAllUsers } from '../services/userService';
 import { CartContext } from './CartContext';
 import jwtDecode from 'jwt-decode'; 
@@ -23,13 +24,7 @@ export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [userLoggedInData, setUserLoggedInData] = useState(null)
   const { setCart } = useContext(CartContext)
-  // const loadCartFromLocalStorage = () => {
-  //   const cartData = localStorage.getItem('cart');
-  //   return cartData ? JSON.parse(cartData) : [];
-  // };
-
-  // const context = useContext(CartContext)
-  // console.log(context)
+ 
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -65,13 +60,12 @@ export const UserProvider = ({ children }) => {
       try {
         const decodedUserId = jwtDecode(storedToken);
         console.log("Decoded User ID:", decodedUserId.nameid);
-        setUserId(decodedUserId.nameid); // تخزين الـ userId
-        localStorage.setItem("userId", decodedUserId.nameid); // تخزين الـ userId في الـ localStorage
+        setUserId(decodedUserId.nameid); 
+        localStorage.setItem("userId", decodedUserId.nameid); 
       } catch (error) {
         console.error("Error decoding token:", error);
       }
     } else {
-      // يمكن إلغاء تفعيل المستخدم إذا كانت البيانات غير موجودة
       signOutUser();
     }
   }, []);

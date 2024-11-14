@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Box, Typography, List, ListItem, ListItemText, Divider, styled } from '@mui/material';
-import { FiUser, FiSettings } from 'react-icons/fi'; // استيراد الأيقونات
 
-// تعريف الألوان
+import { Box, Typography, List, ListItem, ListItemText, Divider, styled } from '@mui/material';
+import { FiUser} from 'react-icons/fi'; 
+
 const colors = {
   lightBeige: '#ffffff',
   darkBeige: '#F9F7F3',
-  vibrantPink: '#842B6B', // لون فوشي
+  vibrantPink: '#842B6B', 
   softWhite: '#000000',
   lightGray: '#f1f1f1',
 };
 
-// تنسيق الشريط الجانبي
 const Sidebar = styled('aside')({
   backgroundColor: colors.darkBeige,
   color: colors.softWhite,
@@ -26,7 +25,6 @@ const Sidebar = styled('aside')({
   transition: 'all 0.3s ease',
 });
 
-// تنسيق الرابط
 const StyledLink = styled(Link)({
   color: colors.softWhite,
   textDecoration: 'none',
@@ -45,21 +43,19 @@ const StyledLink = styled(Link)({
   },
 });
 
-// تنسيق المحتوى الرئيسي
 const MainContent = styled('main')({
   backgroundColor: colors.lightBeige,
   flex: 1,
-  marginLeft: '250px', // تأكيد أن المحتوى لن يغطي الشريط الجانبي
+  marginLeft: '250px', 
   padding: '40px',
   display: 'flex',
   flexDirection: 'column',
-  minHeight: 'calc(100vh - 80px)', // تأكيد أن المحتوى سيملأ الصفحة بالكامل باستثناء الفوتر
+  minHeight: 'calc(100vh - 80px)', 
 });
 
 const UserDashboard = () => {
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
-      {/* الشريط الجانبي */}
       <Sidebar>
         <Typography variant="h5" gutterBottom>
           User Dashboard
@@ -76,7 +72,6 @@ const UserDashboard = () => {
         </nav>
       </Sidebar>
 
-      {/* المحتوى الرئيسي */}
       <MainContent>
         <Outlet />
       </MainContent>
